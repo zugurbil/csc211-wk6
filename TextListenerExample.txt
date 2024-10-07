@@ -1,0 +1,40 @@
+
+public class TextListenerExample {
+    public static void main(String[] args) {
+        // Create a Frame
+        Frame frame = new Frame("TextListener Example");
+
+        // Create a TextField
+        TextField textField = new TextField(20);
+
+        // Create a Label to display changes
+        Label label = new Label("Text will appear here");
+
+        // Add a TextListener to the TextField
+        textField.addTextListener(new TextListener() {
+            @Override
+            public void textValueChanged(TextEvent e) {
+                // Update the label when text is changed
+                label.setText("Current text: " + textField.getText());
+            }
+        });
+
+        // Add components to the Frame
+        frame.setLayout(new FlowLayout());
+        frame.add(new Label("Type something:"));
+        frame.add(textField);
+        frame.add(label);
+
+        // Set frame properties
+        frame.setSize(300, 150);
+        frame.setVisible(true);
+
+        // Add a WindowListener to close the frame
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                frame.dispose();
+            }
+        });
+    }
+}

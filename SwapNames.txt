@@ -1,0 +1,69 @@
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class SwapNames extends Frame implements ActionListener {
+    Label firstNameLabel, lastNameLabel;
+    TextField firstNameField, lastNameField;
+    Button okButton;
+
+    SwapNames() {
+        // Set the layout manager to null for custom positioning
+        setLayout(null);
+
+        // Create and position "First Name" label
+        firstNameLabel = new Label("First Name:");
+        firstNameLabel.setBounds(50, 50, 80, 30);
+        add(firstNameLabel);
+
+        // Create and position "First Name" text field
+        firstNameField = new TextField(20);
+        firstNameField.setBounds(150, 50, 150, 30);
+        add(firstNameField);
+
+        // Create and position "Last Name" label
+        lastNameLabel = new Label("Last Name:");
+        lastNameLabel.setBounds(50, 100, 80, 30);
+        add(lastNameLabel);
+
+        // Create and position "Last Name" text field
+        lastNameField = new TextField(20);
+        lastNameField.setBounds(150, 100, 150, 30);
+        add(lastNameField);
+
+        // Create and position the "OK" button
+        okButton = new Button("OK");
+        okButton.setBounds(150, 150, 50, 30);
+        okButton.addActionListener(this);
+        add(okButton);
+
+        // Configure the frame
+        setTitle("Swap First and Last Name");
+        setSize(400, 250);
+        setVisible(true);
+
+        // Close the frame when the window is closed
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                System.exit(0);
+            }
+        });
+    }
+
+    // Event handler for button click
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == okButton) {
+            // Swap the text between the first name and last name fields
+            String firstName = firstNameField.getText();
+            String lastName = lastNameField.getText();
+
+            // Set the swapped text
+            firstNameField.setText(lastName);
+            lastNameField.setText(firstName);
+        }
+    }
+
+    public static void main(String[] args) {
+        new SwapNames();
+    }
+}
